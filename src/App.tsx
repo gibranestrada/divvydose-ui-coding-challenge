@@ -1,12 +1,14 @@
 import React from "react";
 import "./App.css";
+import useFetchPullRequests from "./useFetchPullRequests";
 
-function App() {
+const App = () => {
+  const pullRequests = useFetchPullRequests();
   return (
     <div className="App">
-      <p>Hello</p>
+      <h1>Pull request list</h1>
     </div>
   );
-}
+};
 
 export default App;
