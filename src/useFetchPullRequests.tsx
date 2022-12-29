@@ -1,19 +1,20 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
-
-const URL = "https://api.github.com/repos/divvydose/ui-coding-challenge/pulls";
+import { DIVVY_DOSE_PRS_URL } from "./constants";
 
 const useFetchPullRequests = () => {
   const [loading, setLoading] = useState(false);
   const [list, setList] = useState();
 
   useEffect(() => {
+    const controller = new AbortController();
     const fetchDivvydosePRs = () => {
       setLoading(true);
       axios
-        .get(URL)
+        .get(DIVVY_DOSE_PRS_URL, { signal: controller.signal })
         .then((res) => {
-          console.log(res);
+          console.log(res.data);
+          setList(res.data);
         })
         .catch((e) => {
           console.log(e);
@@ -23,8 +24,14 @@ const useFetchPullRequests = () => {
         });
     };
     fetchDivvydosePRs();
+
+    return () => {
+      //clean up request
+      controller.abort();
+    };
   }, []);
-  return [loading, setLoading, list, setList];
+
+  return { loading, setLoading, list, setList };
 };
 
 export default useFetchPullRequests;

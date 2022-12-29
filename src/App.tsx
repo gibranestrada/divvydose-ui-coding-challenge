@@ -3,7 +3,7 @@ import "./App.css";
 import useFetchPullRequests from "./useFetchPullRequests";
 
 const App = () => {
-  const pullRequests = useFetchPullRequests();
+  const { loading, setLoading, list, setList } = useFetchPullRequests();
   return (
     <div className="App">
       <h1>Pull request list</h1>
