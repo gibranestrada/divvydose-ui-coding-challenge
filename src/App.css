@@ -2,6 +2,16 @@
   text-align: center;
 }
 
-.Loading {
+.loading {
   text-align: center;
+}
+
+.label {
+  padding: 5px;
+  border-radius: 8px;
+  margin: 3px;
+}
+
+.animals {
+  color: #ffff;
 }

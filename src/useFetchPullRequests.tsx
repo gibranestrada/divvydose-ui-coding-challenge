@@ -2,9 +2,21 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { DIVVY_DOSE_PRS_URL } from "./constants";
 
+export interface Labels {
+  name: string;
+  color: string;
+}
+export interface List {
+  title: string;
+  url: string;
+  labels: Labels[];
+  created_at: string;
+}
+
 const useFetchPullRequests = () => {
-  const [loading, setLoading] = useState(true);
-  const [list, setList] = useState();
+  const [isLoading, setLoading] = useState(true);
+  const [list, setList] = useState<List[]>([]);
+  const [labels, setLabels] = useState<string[]>([]);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -31,7 +43,22 @@ const useFetchPullRequests = () => {
     };
   }, []);
 
-  return { loading, setLoading, list, setList };
+  useEffect(() => {
+    let labelsList = list
+      .map((pullRequest) => {
+        return pullRequest.labels.map((label) => {
+          return label.name;
+        });
+      })
+      .flat();
+
+    let uniqueList = labelsList.filter((c, index) => {
+      return labelsList.indexOf(c) === index;
+    });
+    setLabels(uniqueList);
+  }, [list]);
+
+  return { isLoading, setLoading, list, setList, labels };
 };
 
 export default useFetchPullRequests;
