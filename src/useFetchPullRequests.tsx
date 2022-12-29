@@ -3,13 +3,13 @@ import axios from "axios";
 import { DIVVY_DOSE_PRS_URL } from "./constants";
 
 const useFetchPullRequests = () => {
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [list, setList] = useState();
 
   useEffect(() => {
     const controller = new AbortController();
+
     const fetchDivvydosePRs = () => {
-      setLoading(true);
       axios
         .get(DIVVY_DOSE_PRS_URL, { signal: controller.signal })
         .then((res) => {
