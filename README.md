@@ -1,21 +1,21 @@
 # Divvydose ui coding challenge
 
-![App](./src/assets/App.png | width=100)
+<img src="./src/assets/App.png" width="200">
 
 I used create react app + typescript to get started quickly. Since this is a small application I structured the folder very easily. I have components, hooks, assets and utils folder. All the folder names are lower cased. The components and main application files are capitalized but the rest are lower cased. App.tsx file renders all the components. It calls the useFetchPullRequest hook to fetch the PRs. Since it's a small app I chose prop drilling to pass the state instead of using redux or useContext for global state management. PullRequestList.tsx has all the logic and table for displaying the returned PRs. I have two utils functions that help with date formatting and capitalizing the first letter of a string. I added a few tests throughout the application.
 
-![Folder structure](./src/assets/FolderStructure.png | width=100)
+<img src="./src/assets/FolderStructure.png" width="200">
 
 # Table
 
-![Filter by label dropdown](./src/assets/FilterByLabel.png | width=100)
-![Filtered by bug label](./src/assets/FilteredByBugLabel.png | width=100)
+<img src="./src/assets/FilterByLabel.png" width="200">
+<img src="./src/assets/FilteredByBugLabel.png" width="200">
 
 Here we see a table with 4 headers (Title, All labels, Date opened, Link) and list of PRs. To filter by a specific label, you need to click on "All labels" header and a dropdown menu will appear. Select the desired label and it will only show you the PRs with the selected label.
 
 # Test coverage
 
-![Test Coverage](/src/assets/TestCoverage.png | width=100)
+<img src="/src/assets/TestCoverage.png" width="200">
 
 Test coverage is over 93 percent of lines.
 
