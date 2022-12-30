@@ -28,12 +28,10 @@ const useFetchPullRequests = () => {
         .get(DIVVY_DOSE_PRS_URL, { signal: controller.signal })
         .then((res) => {
           setList(res.data);
+          setLoading(false);
         })
         .catch((e) => {
           console.log(e);
-        })
-        .finally(() => {
-          setLoading(false);
         });
     };
     fetchDivvydosePRs();

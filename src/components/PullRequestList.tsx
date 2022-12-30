@@ -33,7 +33,7 @@ const PullRequestList: FunctionComponent<PullRequestListProps> = ({
     return (
       <select onChange={handleLabelChange}>
         <option defaultValue={"All labels"} value="all">
-          All labels
+          Filter by label
         </option>
         {labels.map((label, index) => (
           <option key={label + index} value={label}>
