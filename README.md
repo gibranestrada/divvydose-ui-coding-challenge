@@ -1,3 +1,11 @@
+# Divvydose ui coding challenge
+
+I used create react app + typescript to get started quickly. Since this is a small application I structured the folder very easily. I have components, hooks, assets and utils folder. All the folder names are lower cased. The components and main application files are capitalized but the rest are lower cased. App.tsx file renders all the components. It calls the useFetchPullRequest hook to fetch the PRs. Since it's a small app I chose prop drilling to pass the state instead of using redux or useContext for global state management. PullRequestList.tsx has all the logic and table for displaying the returned PRs. I have two utils functions that help with date formatting and capitalizing the first letter of a string.
+
+# Table
+
+Here we see a table with 4 headers (Title, All labels, Date opened, Link) and list of PRs. To filter by a specific label, you need to click on "All labels" header and a dropdown menu will appear. Select the desired label and it will only show you the PRs with the selected label.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
