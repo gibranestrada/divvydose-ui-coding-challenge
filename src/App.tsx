@@ -20,23 +20,18 @@ const App = () => {
         return str2;
       };
 
-      return labels
-        .filter(
-          (label) => selectedLabel === "all" || label.name === selectedLabel
-        )
-        .map((label) => (
-          <div
-            className={`label ${label.name}`}
-            style={{ backgroundColor: `#${label.color}` }}
-          >
-            {toFirstLetterUpperCase(label.name)}{" "}
-          </div>
-        ));
+      return labels.map((label) => (
+        <div
+          className={`label ${label.name}`}
+          style={{ backgroundColor: `#${label.color}` }}
+        >
+          {toFirstLetterUpperCase(label.name)}{" "}
+        </div>
+      ));
     };
 
     const dropDownLabelList = () => {
       const handleLabelChange: ChangeEventHandler<HTMLSelectElement> = (e) => {
-        console.log(e);
         setSelectedLabel(e.target.value);
       };
       return (
@@ -60,7 +55,7 @@ const App = () => {
     };
 
     return (
-      <table>
+      <table id="pull-requests">
         <thead>
           <tr>
             <th>Title</th>

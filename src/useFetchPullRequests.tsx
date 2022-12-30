@@ -25,7 +25,6 @@ const useFetchPullRequests = () => {
       axios
         .get(DIVVY_DOSE_PRS_URL, { signal: controller.signal })
         .then((res) => {
-          console.log(res.data);
           setList(res.data);
         })
         .catch((e) => {
