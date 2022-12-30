@@ -14,6 +14,7 @@ const PullRequestList: FunctionComponent<PullRequestListProps> = ({
 }) => {
   const [selectedLabel, setSelectedLabel] = useState("all");
 
+  //This function iterates through the labels array and returns div elements
   const parseLabels = (labels: Labels[]) => {
     return labels.map((label) => (
       <div
@@ -26,6 +27,7 @@ const PullRequestList: FunctionComponent<PullRequestListProps> = ({
     ));
   };
 
+  //This function creates the dropdown Label list
   const dropDownLabelList = () => {
     const handleLabelChange: ChangeEventHandler<HTMLSelectElement> = (e) => {
       setSelectedLabel(e.target.value);
@@ -44,6 +46,7 @@ const PullRequestList: FunctionComponent<PullRequestListProps> = ({
     );
   };
 
+  //On label selection this function will filter and only return PRs with the selected label
   const filterPullRequests = (labelsArr: Labels[]) => {
     return labelsArr.some(
       (labels) => selectedLabel === "all" || labels.name === selectedLabel
