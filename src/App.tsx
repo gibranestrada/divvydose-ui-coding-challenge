@@ -1,6 +1,7 @@
 import React, { ChangeEventHandler, useState } from "react";
 import "./App.css";
 import useFetchPullRequests, { Labels } from "./useFetchPullRequests";
+import { format } from "date-fns";
 
 const App = () => {
   const { isLoading, setLoading, list, setList, labels } =
@@ -71,7 +72,9 @@ const App = () => {
               <tr key={pullRequest.title}>
                 <td>{pullRequest.title}</td>
                 <td>{parsingLabels(pullRequest.labels)}</td>
-                <td>{pullRequest.created_at}</td>
+                <td>
+                  {format(new Date(pullRequest.created_at), "MM/dd/yyyy")}
+                </td>
                 <td>{pullRequest.url}</td>
               </tr>
             ))}
