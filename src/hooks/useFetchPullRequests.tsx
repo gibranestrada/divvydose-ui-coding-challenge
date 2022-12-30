@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { DIVVY_DOSE_PRS_URL } from "./constants";
+import { DIVVY_DOSE_PRS_URL } from "../constants";
 
 export interface Labels {
   name: string;
@@ -21,8 +21,10 @@ const useFetchPullRequests = () => {
   useEffect(() => {
     const controller = new AbortController();
 
-    const fetchDivvydosePRs = () => {
-      axios
+    //This function is making the fetch request to the github api and retrieving all of divvydose ui-coding-challenge PRs
+    //Added a cleanup function to cancel the request to avoid memory leaks
+    const fetchDivvydosePRs = async () => {
+      await axios
         .get(DIVVY_DOSE_PRS_URL, { signal: controller.signal })
         .then((res) => {
           setList(res.data);
@@ -42,6 +44,8 @@ const useFetchPullRequests = () => {
     };
   }, []);
 
+  //Here is the logic for retreiving all the labels from the list returned
+  //This will help filter by labels
   useEffect(() => {
     let labelsList = list
       .map((pullRequest) => {
@@ -57,7 +61,7 @@ const useFetchPullRequests = () => {
     setLabels(uniqueList);
   }, [list]);
 
-  return { isLoading, setLoading, list, setList, labels };
+  return { isLoading, list, labels };
 };
 
 export default useFetchPullRequests;
