@@ -11,7 +11,7 @@ I used create react app + typescript to get started quickly. Since this is a sma
 <img src="./src/assets/FilterByLabel.png" width="600">
 <img src="./src/assets/FilteredByBugLabel.png" width="600">
 
-Here we see a table with 4 headers (Title, All labels, Date opened, Link) and list of PRs. To filter by a specific label, you need to click on "All labels" header and a dropdown menu will appear. Select the desired label and it will only show you the PRs with the selected label.
+Here we see a table with 4 headers (Title, All labels, Date opened, Link) and list of PRs. To filter by a specific label, you need to click on "All labels" header and a dropdown menu will appear. Select the desired label and it will only show you the PRs with the selected label. Under the link column a user can click on any link and it will open a new window and redirect them to the PR.
 
 # Test coverage
 
