@@ -8,7 +8,7 @@ export interface Labels {
 }
 export interface List {
   title: string;
-  url: string;
+  html_url: string;
   labels: Labels[];
   created_at: string;
 }

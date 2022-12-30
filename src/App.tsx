@@ -7,20 +7,14 @@ const App = () => {
   const { isLoading, setLoading, list, setList, labels } =
     useFetchPullRequests();
   const [selectedLabel, setSelectedLabel] = useState("all");
-  const [dropDownLabels, setDropDownLabels] = useState<string[]>([]);
+
+  const toFirstLetterUpperCase = (str: string) => {
+    const str2 = str.charAt(0).toUpperCase() + str.slice(1);
+    return str2;
+  };
 
   const pullRequestList = () => {
     const parsingLabels = (labels: Labels[]) => {
-      const toFirstLetterUpperCase = (str: string) => {
-        const str2 = str.charAt(0).toUpperCase() + str.slice(1);
-
-        if (!dropDownLabels.includes(str2)) {
-          setDropDownLabels((s) => [...s, str2]);
-        }
-
-        return str2;
-      };
-
       return labels.map((label) => (
         <div
           className={`label ${label.name}`}
@@ -42,7 +36,7 @@ const App = () => {
           </option>
           {labels.map((label, index) => (
             <option key={label + index} value={label}>
-              {label}
+              {toFirstLetterUpperCase(label)}
             </option>
           ))}
         </select>
@@ -75,7 +69,15 @@ const App = () => {
                 <td>
                   {format(new Date(pullRequest.created_at), "MM/dd/yyyy")}
                 </td>
-                <td>{pullRequest.url}</td>
+                <td>
+                  <a
+                    href={pullRequest.html_url}
+                    rel="noreferrer"
+                    target="_blank"
+                  >
+                    {pullRequest.html_url}
+                  </a>
+                </td>
               </tr>
             ))}
         </tbody>
