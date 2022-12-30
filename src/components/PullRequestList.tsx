@@ -1,16 +1,25 @@
-import React, { ChangeEventHandler, useState } from "react";
-import useFetchPullRequests, { Labels } from "../hooks/useFetchPullRequests";
+import React, { ChangeEventHandler, useState, FunctionComponent } from "react";
+import { Labels, ListData } from "../hooks/useFetchPullRequests";
 import { formatDate, toFirstLetterUpperCase } from "../utils";
+import "./PullRequestList.css";
 
-const PullRequestList = () => {
+interface PullRequestListProps {
+  list: ListData[];
+  labels: string[];
+}
+
+const PullRequestList: FunctionComponent<PullRequestListProps> = ({
+  list,
+  labels,
+}) => {
   const [selectedLabel, setSelectedLabel] = useState("all");
-  const { list, labels } = useFetchPullRequests();
 
   const parseLabels = (labels: Labels[]) => {
     return labels.map((label) => (
       <div
         className={`label ${label.name}`}
         style={{ backgroundColor: `#${label.color}` }}
+        key={label.name}
       >
         {toFirstLetterUpperCase(label.name)}{" "}
       </div>

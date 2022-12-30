@@ -6,7 +6,7 @@ export interface Labels {
   name: string;
   color: string;
 }
-export interface List {
+export interface ListData {
   title: string;
   html_url: string;
   labels: Labels[];
@@ -15,7 +15,7 @@ export interface List {
 
 const useFetchPullRequests = () => {
   const [isLoading, setLoading] = useState(true);
-  const [list, setList] = useState<List[]>([]);
+  const [list, setList] = useState<ListData[]>([]);
   const [labels, setLabels] = useState<string[]>([]);
 
   useEffect(() => {
@@ -42,7 +42,7 @@ const useFetchPullRequests = () => {
       //clean up request
       controller.abort();
     };
-  }, []);
+  }, [list.length]);
 
   //Here is the logic for retreiving all the labels from the list returned
   //This will help filter by labels
